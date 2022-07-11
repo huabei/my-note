@@ -1,99 +1,803 @@
-<!DOCTYPE html><html>
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="mobile-web-app-capable" content="yes"/>
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <link rel="stylesheet" type="text/css" id="themeDefaultStyle" href="stage/build/export/base.css?2.0.25"/>
-    <link rel="stylesheet" type="text/css" id="themeStyle" href="appearance/themes/daylight/theme.css?2.0.25"/>
-    <title>E:\Huabei\Note\SiYuan\HTML基础\HTML基础\HTML基础 - 思源笔记  v2.0.25</title>
-    <style>
-        body {background-color: var(--b3-theme-background);color: var(--b3-theme-on-background)}
-        .b3-typography, .protyle-wysiwyg, .protyle-title {font-size:16px !important}
-.b3-typography code:not(.hljs), .protyle-wysiwyg code:not(.hljs) { font-variant-ligatures: none }
-.li > .protyle-action {height:34px;line-height: 34px}
-.protyle-wysiwyg [data-node-id].li > .protyle-action ~ .h1, .protyle-wysiwyg [data-node-id].li > .protyle-action ~ .h2, .protyle-wysiwyg [data-node-id].li > .protyle-action ~ .h3, .protyle-wysiwyg [data-node-id].li > .protyle-action ~ .h4, .protyle-wysiwyg [data-node-id].li > .protyle-action ~ .h5, .protyle-wysiwyg [data-node-id].li > .protyle-action ~ .h6 {line-height:34px;}
-.protyle-wysiwyg [data-node-id].li > .protyle-action:after {height: 16px;width: 16px;margin:-8px 0 0 -8px}
-.protyle-wysiwyg [data-node-id].li > .protyle-action svg {height: 14px}
-.protyle-wysiwyg [data-node-id] [spellcheck="false"] {min-height:26px}
-.protyle-wysiwyg .li {min-height:34px}
-.protyle-gutters button svg {height:26px}
-.protyle-wysiwyg img.emoji, .b3-typography img.emoji {width:18px}
-.protyle-wysiwyg .h1 img.emoji, .b3-typography h1 img.emoji {width:35px}
-.protyle-wysiwyg .h2 img.emoji, .b3-typography h2 img.emoji {width:31px}
-.protyle-wysiwyg .h3 img.emoji, .b3-typography h3 img.emoji {width:27px}
-.protyle-wysiwyg .h4 img.emoji, .b3-typography h4 img.emoji {width:25px}
-.protyle-wysiwyg .h5 img.emoji, .b3-typography h5 img.emoji {width:22px}
-.protyle-wysiwyg .h6 img.emoji, .b3-typography h6 img.emoji {width:20px}
-    </style>
-</head>
-<body>
-<div class="b3-typography" style="max-width: 800px;margin: 0 auto;" id="preview"><h1 id="HTML基础">&nbsp;Javascript基础</h1>
-<h1 id="Data-Types">Data Types</h1>
-<p updated="20220710173932">三种定义数据的方式：<strong>[keyword][name]</strong></p>
-<ul updated="20220710173932">
-<li id="20220710173932-npjpex7" updated="20220710173932">
-<p updated="20220710173932">变量（Variables）</p>
-<ul updated="20220710173932">
-<li id="20220710173932-ytiu351" updated="20220710173932">
-<p updated="20220710173932">var：全局变量，可以再声明前调用</p>
-</li>
-<li id="20220710173932-2ircbym" updated="20220710173932">
-<p updated="20220710173932">let：局部变量</p>
-</li>
-</ul>
-</li>
-<li id="20220710173932-5f138yh" updated="20220710173932">
-<p updated="20220710173932">常量</p>
-<ul updated="20220710173932">
-<li id="20220710173932-qfqf17w" updated="20220710173932">
-<p updated="20220710173932">const，不能够被改变</p>
-</li>
-</ul>
-</li>
-</ul>
-<p updated="20220710173932">六种原始数据类型：string, number, bigint, boolean, undefined, symbol.</p>
-<pre class="code-block" data-language=""><code class="hljs">myNumber = 123;
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Javascript基础</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="f5217d36-b2e9-4874-bcad-33c841d33459" class="page sans"><header><h1 class="page-title">Javascript基础</h1></header><div class="page-body"><h1 id="e21034bc-e685-4ac7-9074-b11fc8085088" class="">Data Types</h1><p id="b0aabc2a-0ad0-42a5-a521-c9e8a40022db" class="">三种定义数据的方式：<strong>\[keyword\]\[name\]</strong></p><ul id="0620e3cc-c8fc-4cd3-af53-cb12e76a311c" class="bulleted-list"><li style="list-style-type:disc">变量（Variables）<ul id="e5c21feb-523b-4aeb-8a49-2a13e36718ed" class="bulleted-list"><li style="list-style-type:circle">var：全局变量，可以再声明前调用</li></ul><ul id="98f02bcf-b364-433f-9c7d-1ff1bc06d155" class="bulleted-list"><li style="list-style-type:circle">let：局部变量</li></ul></li></ul><ul id="26a4b034-6e56-4ed3-88ea-0864f4af3a17" class="bulleted-list"><li style="list-style-type:disc">常量<ul id="16058e28-bda4-48fa-b7c7-9b0a0bcd4a9d" class="bulleted-list"><li style="list-style-type:circle">const，不能够被改变</li></ul></li></ul><p id="29975ab8-afd5-4cb9-b0cd-1a66d587397b" class="">六种原始数据类型：string, number, bigint, boolean, undefined, symbol.</p><pre id="bd9d3dd9-ad35-469d-9f76-08e6bccfd6da" class="code code-wrap"><code>myNumber = 123;
 myString = &quot;123&quot;;
 myBool = false;
-</code></pre>
-<p updated="20220710173932">方法和函数</p>
-</div>
-<script src="appearance/icons/material/icon.js?2.0.25"></script>
-<script src="stage/build/export/protyle-method.js?2.0.25"></script>
-<script src="stage/protyle/js/lute/lute.min.js?2.0.25"></script>    
-<script>
-    window.siyuan = {
-      config: {
-        appearance: { mode: 0, codeBlockThemeDark: "base16/dracula", codeBlockThemeLight: "github" },
-        editor: { 
-          codeLineWrap: true,
-          codeLigatures: false,
-          plantUMLServePath: "https://www.plantuml.com/plantuml/svg/~1",
-          codeSyntaxHighlightLineNum: true,
-        }
-      },
-      languages: {copy:"复制"}
-    };
-    const previewElement = document.getElementById('preview');
-    Protyle.highlightRender(previewElement, "stage/protyle");
-    Protyle.mathRender(previewElement, "stage/protyle", false);
-    Protyle.mermaidRender(previewElement, "stage/protyle");
-    Protyle.flowchartRender(previewElement, "stage/protyle");
-    Protyle.graphvizRender(previewElement, "stage/protyle");
-    Protyle.chartRender(previewElement, "stage/protyle");
-    Protyle.mindmapRender(previewElement, "stage/protyle");
-    Protyle.abcRender(previewElement, "stage/protyle");
-    Protyle.plantumlRender(previewElement, "stage/protyle");
-    Protyle.mediaRender(previewElement);
-    document.querySelectorAll(".protyle-action__copy").forEach((item) => {
-      item.addEventListener("click", (event) => {
-            navigator.clipboard.writeText(item.parentElement.nextElementSibling.textContent.trimEnd());
-            event.preventDefault();
-            event.stopPropagation();
-      })
-    });
-    
-</script></body></html>
+</code></pre><h3 id="723c5db6-ca5a-4764-83a0-f4bbc4bb862a" class="">算术操作符</h3><p id="6534622a-8840-4e66-be5c-0ffd1a116685" class="">+、-、\*、/、%（取余）</p><h3 id="1690689e-08cc-4df8-97c1-8ec20542d5fa" class="">字符串</h3><p id="cc615ac9-5461-4abf-af2e-ab3f10db2d4d" class="">用单引号或双引号包括</p><h3 id="a074e0cd-28ce-4af7-85ad-a47887cd301c" class="">格式化字符串</h3><pre id="fa22bebe-33ee-4aa0-8873-c67fb558a356" class="code code-wrap"><code>let myString1 = &quot;Hello&quot;;
+let myString2 = &quot;World&quot;;
+
+myString1 + myString2 + &quot;!&quot;; //HelloWorld!
+myString1 + &quot; &quot; + myString2 + &quot;!&quot;; //Hello World!
+myString1 + &quot;, &quot; + myString2 + &quot;!&quot;; //Hello, World!
+
+`${myString1} ${myString2}!` //Hello World!
+`${myString1}, ${myString2}!` //Hello, World!
+</code></pre><h2 id="4f5a290a-c677-4cbc-b132-a676f0e009e3" class="">Methods and Functions</h2><p id="2fbed53f-62b0-43aa-b862-c26a58d8cb07" class="">一个函数其实是一个代码块，通过一个名字调用，这对于多次调用一个任务是方便的，而且是易读的。</p><pre id="f55e7ee1-166f-4685-b60f-3f43874510e9" class="code code-wrap"><code>function nameOfFunction() { // function definition
+ // function definition/body
+}
+</code></pre><p id="84eca8f6-2feb-4cb5-b0bd-d32f741859a7" class="">一个显示Hello， world！的函数：</p><pre id="73f8215a-c30e-42f9-9ec8-08cf233c6092" class="code code-wrap"><code>function displayGreeting() {
+  console.log(&#x27;Hello, world!&#x27;);
+}
+</code></pre><p id="4513eed7-66b0-4290-b500-5064be6f1868" class="">当我们需要调用一个函数的时候，只需要在函数名后加<code>()</code>即可，需要注意的是，在JS中函数的定义可以在调用之后定义，编译器会自动去寻找。</p><pre id="0c457679-8b2e-4b7e-b722-e6802163a0b1" class="code code-wrap"><code>// calling our function
+displayGreeting();
+</code></pre><p id="6202ffa1-21cf-4d2a-b661-b7166db13b17" class="">还有一种特殊的函数叫做方法，其是绑定在对象上的，如<code>console.log(&#x27;Hello, world!&#x27;)</code>,在这里<code>console</code>就是对象。</p><h3 id="e07f774c-6139-4e56-b314-0b8f9ece226d" class="">函数的最佳实践</h3><ul id="a69e97f5-1d1f-4ff8-a3f6-2eef7062c0d2" class="bulleted-list"><li style="list-style-type:disc">函数名要有意义，让人能够知道其作用。</li></ul><ul id="068568f6-cf90-45d5-9631-074080e84330" class="bulleted-list"><li style="list-style-type:disc">使用驼峰命名法</li></ul><ul id="f146b1e4-3a53-413f-b556-430e5f9c4114" class="bulleted-list"><li style="list-style-type:disc">一个函数解决一个特定的任务，不要繁琐。</li></ul><h3 id="dabfa856-eb08-49ee-ae7a-46adcd759be6" class="">给函数传递信息</h3><p id="ec798d77-3a9f-404c-b9f7-74214f293dc2" class="">通过参数的方式给函数传递信息</p><pre id="89057075-b714-4837-9fe5-6f8abb82d22f" class="code code-wrap"><code>function name(param, param2, param3) {
+
+}
+</code></pre><p id="0379f4b0-e9db-4647-8837-3c59394e4d81" class="">可以将<code>displayGreeting()</code>函数更新为：</p><pre id="73bd7258-446c-46ce-b505-15dbf3253343" class="code code-wrap"><code>function displayGreeting(name) {
+  const message = `Hello, ${name}!`;
+  console.log(message);
+}
+</code></pre><p id="bb16c2d3-ee5e-4969-9ec4-101d889208dd" class="">调用函数：</p><pre id="e6fe05b2-11b3-4721-bbf9-8c5c50a5a395" class="code code-wrap"><code>displayGreeting(&#x27;Christopher&#x27;);
+// displays &quot;Hello, Christopher!&quot; when run
+</code></pre><p id="5c3eb8c5-02de-43bf-9e6d-72fb00ce32bc" class="">给参数加默认值：</p><pre id="9f2359ce-fef9-4c2d-aeb1-1fd5baac081a" class="code code-wrap"><code>function displayGreeting(name, salutation=&#x27;Hello&#x27;) {
+  console.log(`${salutation}, ${name}`);
+}
+</code></pre><p id="d1d3cf93-f681-4a96-8ede-43592515dc2d" class="">调用函数：</p><pre id="4f867c86-9654-48b8-8230-5eeec9d380e2" class="code code-wrap"><code>displayGreeting(&#x27;Christopher&#x27;);
+// displays &quot;Hello, Christopher&quot;
+
+displayGreeting(&#x27;Christopher&#x27;, &#x27;Hi&#x27;);
+// displays &quot;Hi, Christopher&quot;
+</code></pre><h3 id="c69dbaa0-52da-4230-aba2-90922e7c54ea" class="">Return values</h3><p id="1bafd47b-5cb6-4a32-bdaa-2d3c9812fb1a" class="">让函数返回值：</p><pre id="7918450b-f372-4b57-af4e-d9d12389384f" class="code code-wrap"><code>return myVariable;
+</code></pre><p id="906ad7ec-42af-4e33-84b7-ab14fc94f16d" class="">一个生成欢迎词的函数：</p><pre id="61fffa67-4863-416e-b8b4-e15e938d08c5" class="code code-wrap"><code>function createGreetingMessage(name) {
+  const message = `Hello, ${name}`;
+  return message;
+}
+</code></pre><p id="f51d9e4d-f376-4f28-8a65-3453a48fb8cf" class="">调用函数：</p><pre id="aea6ce50-91eb-4545-a2c9-699def74b981" class="code code-wrap"><code>const greetingMessage = createGreetingMessage(&#x27;Christopher&#x27;);
+</code></pre><p id="1f67e77d-edb2-46ff-801d-c42530beeba9" class="">将函数作为参数：</p><pre id="4eb89a99-ffee-4a2d-a449-6c46c7cbc65e" class="code code-wrap"><code>function displayDone() {
+  console.log(&#x27;3 seconds has elapsed&#x27;);
+}
+// timer value is in milliseconds
+setTimeout(displayDone, 3000);
+</code></pre><h3 id="5b522f0c-a3e4-4405-8eaf-f7aca1991de6" class="">匿名函数</h3><p id="a7baa84a-f20b-4acd-9c5c-644d99a28ce9" class="">如果一个函数我们在代码中只需要调用一次，则使用匿名函数：</p><pre id="9af35780-5e6d-4ed7-a2a5-f4004520c26c" class="code code-wrap"><code>setTimeout(function() {
+  console.log(&#x27;3 seconds has elapsed&#x27;);
+}, 3000);
+</code></pre><h3 id="a84b1965-d12c-408c-a511-745799581602" class="">胖箭头函数（Fat arrow functions)</h3><p id="e6fe4f76-f004-4e84-8d39-88019582ff28" class="">通过Fat arrow<code>=&gt;</code>可以跳过<code>function</code>关键字：</p><pre id="58a9af96-28d5-441b-adc3-65f5bb8f9210" class="code code-wrap"><code>setTimeout(() =&gt; {
+  console.log(&#x27;3 seconds has elapsed&#x27;);
+}, 3000);
+</code></pre><h3 id="2903e99e-70c1-4514-a682-3921ca1efe70" class="">三种传入函数作为参数的方法</h3><p id="648007fd-78d9-4313-99c8-fa4587fc7a0e" class="">如果函数要使用多次，则按照通常的方法构建。如果函数只调用一次，则使用匿名函数。至于使用胖箭头<code>=&gt;</code>替代<code>function</code>关键字，均可。</p><h2 id="4dd753e0-da2c-4d10-980b-ad47804b7228" class="">Making Decisions</h2><h3 id="47e86a49-cfba-4f77-9272-9b44684c7399" class="">布尔值（Booleans）</h3><p id="86f64e29-47f2-4aac-96fd-6a50c6561f5e" class="">布尔值只有两个：<code>true</code>或者<code>false</code>，布尔值可以帮助决定运行哪一行代码。</p><pre id="033dfbd4-9f06-4833-a5c7-1f1a30e3b836" class="code code-wrap"><code>let myTrueBool = true;
+let myFalseBool = false;
+</code></pre><h3 id="9cb315e2-40cd-4c3e-8406-ab54c3eceacb" class="">比较运算符</h3><p id="186d8a42-3702-4c15-8adb-063fae318734" class="">小于：&lt;
+小于等于：&lt;=
+大于：&gt;
+大于等于：&gt;=
+等于（数据类型可以不同）：<code>5==&#x27;5&#x27;//true</code>
+不等于：<code>5!=&#x27;5&#x27;//true</code>
+强等于（数值和数据类型均相同）：<code>5===&#x27;5&#x27;//false</code>
+不强等于：<code>5!==&#x27;5&#x27;//true</code></p><h3 id="b1874f6e-4839-4b17-ae6e-64bd10459887" class="">If 语句</h3><p id="b308ea92-2814-418b-9ca3-44c016e4015c" class="">如果条件语句为真，则运行代码块中的内容：</p><pre id="3a02d0f2-b833-48f9-bd00-990043ad1a3a" class="code code-wrap"><code>if (condition){
+    //Condition was true. Code in this block will run.
+}
+</code></pre><p id="1720adf9-dc72-4554-b5f0-b038bb72b044" class="">通常条件语句由逻辑运算符构成：</p><pre id="58e12d08-b0f0-4cf1-a681-70a80d17ea22" class="code code-wrap"><code>let currentMoney;
+let laptopPrice;
+
+if (currentMoney &gt;= laptopPrice){
+    //Condition was true. Code in this block will run.
+    console.log(&quot;Getting a new laptop!&quot;);
+}
+</code></pre><h3 id="bc3357da-af0e-4d02-8cbf-5bc501755c4b" class="">If..Else 语句</h3><p id="159b1848-132a-400d-8b67-4f6ee0143e02" class="">如果条件语句为假，则运行代码块中的内容：</p><pre id="74cef4d1-0561-4214-b725-70111afc7bd6" class="code code-wrap"><code>let currentMoney;
+let laptopPrice;
+
+if (currentMoney &gt;= laptopPrice){
+    //Condition was true. Code in this block will run.
+    console.log(&quot;Getting a new laptop!&quot;);
+}
+else{
+    //Condition was false. Code in this block will run.
+    console.log(&quot;Can&#x27;t afford a new laptop, yet!&quot;);
+}
+</code></pre><p id="83e10700-09af-4a01-8130-056818c8825d" class="">其可以选择性的跟在if语句后面</p><h2 id="0cdfc89a-bbcd-487d-a48a-cb49a8199b7f" class="">逻辑运算符</h2><ul id="8a5802a7-6e5c-4cd9-a881-5296b0866630" class="bulleted-list"><li style="list-style-type:disc">逻辑与：<code>&amp;&amp;</code></li></ul><ul id="be1e1256-6dfb-4cd7-ae00-6dac2eda1427" class="bulleted-list"><li style="list-style-type:disc">逻辑或：<code>||</code></li></ul><ul id="a16022c0-e811-41c1-9c6b-f7cb7376b666" class="bulleted-list"><li style="list-style-type:disc">逻辑非：<code>!</code>
+逻辑运算符用于处理两个布尔值</li></ul><h3 id="6e441b99-bb9f-4ec9-953d-697ef514ba46" class="">使用逻辑运算符</h3><p id="c7d2f7f5-5f38-4064-900e-75951a0e5ea4" class="">在if..else语句中使用逻辑运算符</p><pre id="487dc28c-3c7a-42ca-bd72-4094e8b59435" class="code code-wrap"><code>let currentMoney;
+let laptopPrice;
+let laptopDiscountPrice = laptopPrice - (laptopPrice * .20) //Laptop price at 20 percent off
+
+if (currentMoney &gt;= laptopPrice || currentMoney &gt;= laptopDiscountPrice){
+    //Condition was true. Code in this block will run.
+    console.log(&quot;Getting a new laptop!&quot;);
+}
+else {
+    //Condition was true. Code in this block will run.
+    console.log(&quot;Can&#x27;t afford a new laptop, yet!&quot;);
+}
+</code></pre><h3 id="746b8c8e-88a9-4807-9b25-32812777aadb" class="">取反</h3><p id="80422146-6b12-4eff-840f-ac7e5baa82d4" class="">通过<code>!</code>可以对条件取反：</p><pre id="68697720-a8e5-43aa-ac88-3a22c740aa30" class="code code-wrap"><code>if (!condition) {
+  // runs if condition is false
+} else {
+  // runs if condition is true
+}
+</code></pre><h3 id="5e0f67ed-ef66-45fc-a802-e02e8fa10726" class="">三元表达式</h3><p id="ba1de23b-5dd8-4e4d-97a3-3db713e48618" class="">三元表达式可以代替简单的if..else语句：</p><pre id="5a877c9f-2ed1-449f-bb2c-871e5184a490" class="code code-wrap"><code>let variable = condition ? &lt;return this if true&gt; : &lt;return this if false&gt;
+</code></pre><p id="414c6eb6-9ab0-40ca-a1f3-54738b14d37d" class="">具体使用：</p><pre id="2ea52e9b-3117-4b10-9f9b-ee4952bfcc64" class="code code-wrap"><code>let firstNumber = 20;
+let secondNumber = 10
+let biggestNumber = firstNumber &gt; secondNumber ? firstNumber: secondNumber;
+</code></pre><h2 id="02a8474e-cc52-4f0e-a1ae-b8ae0759ba4b" class="">Arrays and Loops</h2><p id="44123727-e58a-4603-b438-42c937e2555f" class="">数组是一种结构化的数据形式：</p><pre id="a10cea49-0e76-4229-aabb-7c3bdee8a41e" class="code code-wrap"><code>let myArray = [];
+</code></pre><p id="7ee95f35-c043-4c23-8218-30d391389bfe" class="">数组中的值以逗号隔开，可以包含不同类型的值：</p><pre id="4a5cb311-b3c4-4e88-926d-65061de3f502" class="code code-wrap"><code>let iceCreamFlavors = [&quot;Chocolate&quot;, &quot;Strawberry&quot;, &quot;Vanilla&quot;, &quot;Pistachio&quot;, &quot;Rocky Road&quot;];
+</code></pre><p id="0f851bb4-44c8-4ad5-8606-17071c88f0dd" class="">数组中的值分配了一个索引，这个索引是值到开始位置的距离，可以通过索引读取，改变或插入新值。</p><pre id="f88fb044-df04-469c-9b21-1214f3baa7b0" class="code code-wrap"><code>let iceCreamFlavors = [&quot;Chocolate&quot;, &quot;Strawberry&quot;, &quot;Vanilla&quot;, &quot;Pistachio&quot;, &quot;Rocky Road&quot;];
+iceCreamFlavors[2]; //&quot;Vanilla&quot;
+iceCreamFlavors[4] = &quot;Butter Pecan&quot;; //Changed &quot;Rocky Road&quot; to &quot;Butter Pecan&quot;
+iceCreamFlavors[5] = &quot;Cookie Dough&quot;; //Added &quot;Cookie Dough&quot;
+</code></pre><p id="63750207-0238-40c8-bb51-a6ddcc56e55b" class="">也可以通过数组操作增加新值：</p><pre id="134acc92-f12b-4913-a138-d605ba0133d8" class="code code-wrap"><code>iceCreamFlavors.push(&#x27;Cookie Dough&#x27;)
+</code></pre><p id="f812aae5-e010-4dae-8efa-b46c6793c193" class="">通过<code>length</code>属性获取数组长度：</p><pre id="3dc6d4dd-a557-4111-8afa-c038f75a1fe2" class="code code-wrap"><code>let iceCreamFlavors = [&quot;Chocolate&quot;, &quot;Strawberry&quot;, &quot;Vanilla&quot;, &quot;Pistachio&quot;, &quot;Rocky Road&quot;];
+iceCreamFlavors.length; //5
+</code></pre><h3 id="607a5a5e-0a73-4cff-8cb0-6e6c94157352" class="">Loops</h3><p id="cc93253b-69b1-412f-aab6-caab468f54f8" class="">循环对于处理重复工作，减少代码量有重要作用。在JS中，循环的本质是：<em><strong>loop over data</strong></em></p><h3 id="062f3091-c28b-4e70-b0af-6b4e3329ab4a" class="">For 循环</h3><p id="7e26c7d1-c48b-499c-b3ba-29346e0e00dd" class="">for循环需要三个部分：
+- 计数器：一个保存循环次数的变量
+- 条件语句：用于判断终止的条件
+- 迭代语句：在每个循环后执行的语句，用来改变计数器</p><pre id="0f8eb3a6-21e5-4755-86b0-ee8c254400b9" class="code code-wrap"><code>// Counting up to 10
+for (let i = 0; i &lt; 10; i++) {
+  console.log(i);
+}
+</code></pre><h3 id="077ed9d3-3b2c-4de5-8972-c6e7840c1a8e" class="">While 循环</h3><pre id="d1106fab-71e7-453e-92f5-318222891989" class="code code-wrap"><code>//Counting up to 10
+let i = 0;
+while (i &lt; 10) {
+ console.log(i);
+ i++;
+}
+</code></pre><h3 id="e4bdeb2e-04c6-4e0d-abbf-5a292d6f27fa" class="">循环和数组</h3><p id="0f48cf6a-061d-46ed-9882-8975a57bb76b" class="">数组经常在循环中使用，因为大多数时候循环需要判断数组的长度来终止，而且计数器可以索引数组中的元素。</p><pre id="2730b042-7c8b-45d2-b959-29ac5b983bc3" class="code code-wrap"><code>let iceCreamFlavors = [&quot;Chocolate&quot;, &quot;Strawberry&quot;, &quot;Vanilla&quot;, &quot;Pistachio&quot;, &quot;Rocky Road&quot;];
+
+for (let i = 0; i &lt; iceCreamFlavors.length; i++) {
+  console.log(iceCreamFlavors[i]);
+} //Ends when all flavors are printed
+</code></pre><p id="641277c5-5431-43a8-bc40-4b89cd2b49ed" class="">
+</p></div></article></body></html>
